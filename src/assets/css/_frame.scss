@@ -1,3 +1,19 @@
 // 页面布局相关样式
 @import './mixin';
 @import "./variable";
+
+#app {
+  @include flex(flex-start, center, column);
+  height: 100%;
+  > div {
+    width: 100%;
+    &.header {
+      flex: 0 0 100px;
+      overflow: hidden;
+    }
+    &.wrap {
+      flex: 1;
+      overflow: hidden;
+    }
+  }
+}
