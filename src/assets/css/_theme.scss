@@ -1,0 +1,21 @@
+// 主题文件，换肤
+@import './variable';
+@import './mixin';
+
+@mixin theme($backcolor:#f00, $fcolor:#f00) {
+  .header {
+    color: $fcolor;
+  }
+}
+
+.theme-red {
+  @include theme(#f00, #f00);
+}
+
+.theme-blue {
+  @include theme(#00f, #00f);
+}
+
+.theme-yellow {
+  @include theme(#ff0, #ff0);
+}

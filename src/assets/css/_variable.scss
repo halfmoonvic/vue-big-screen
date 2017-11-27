@@ -1,0 +1,62 @@
+/**
+ * ****************************************
+ * *************** 布局相关尺寸 *************
+ * ****************************************
+ */
+// 页面整理的宽度 是 1200 还是自适应
+$site-width: 80%;
+
+/**
+ * ****************************************
+ * *************** 颜色定义规范 *************
+ * ****************************************
+ */
+// 字体颜色
+$cl-txt: #333;
+$cl-txt-hl: #00ffff;
+
+// 三种边框颜色
+$cl-theme-cyan: #0ff;
+$cl-theme-cyan-d: rgba(0, 255, 255, .5);
+$cl-theme-red: #f1174f;
+$cl-theme-red-d: rgba(241, 23, 79, .5);
+$cl-theme-blue: #007dfd;
+$cl-theme-blue-d: rgba(0, 125, 253, .5);
+$cl-theme-green: #00ffb4;
+$cl-theme-green-d: rgba(0, 255, 180, .5);
+$cl-theme-shengreen: #23ff2e;
+$cl-theme-shengreen-d: rgba(35, 255, 46, .5);
+$cl-theme-pure: #00bdff;
+$cl-theme-pure-d: rgba(0, 189, 255, .5);
+
+/**
+ * ****************************************
+ * *************** 字体定义规范 *************
+ * ****************************************
+ */
+// 释义
+// smallest   st       最小
+// smaller    sr       比较小
+// small      sm       小        默认为 body 下面的字体大小
+// medium     md       中等
+// large      lg       大
+// larger     lr       比较大
+// largest    lt       最大
+
+// 普通屏幕字体大小
+$fz-st: 10px;
+$fz-sr: 12px;
+$fz-sm: 14px;
+$fz-md: 16px;
+$fz-lg: 18px;
+$fz-lr: 22px;
+$fz-lt: 36px;
+
+// 大屏大字体
+// $fz-ss: 12px;
+// $fz-xs: 16px;
+// $fz-sm: 18px;
+// $fz-md: 24px;
+// $fz-lg: 28px;
+// $fz-gg: 36px;
+// $fz-vg: 46px;
