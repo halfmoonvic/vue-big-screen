@@ -17,7 +17,7 @@ export class Bar {
       },
       xAxis: {
         axisLabel: STYLE.axisLabel,
-        data: []
+        data: ['a', 'b', 'c']
       },
       yAxis: {
         axisLabel: STYLE.axisLabel,

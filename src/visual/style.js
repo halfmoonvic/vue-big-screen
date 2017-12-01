@@ -3,7 +3,7 @@ import echarts from 'echarts'
 // 图例的样式
 export const legend = {
   textStyle: {
-    color: '#f00',
+    color: '#A17E7E',
     fontSize: 18
   }
 }
@@ -11,14 +11,11 @@ export const legend = {
 // x轴 y轴字体样式大小 距离设置
 export const axisLabel = {
   textStyle: {
-    color: '#f00',
+    color: '#6F6F6F',
     fontSize: 16,
     fontWeight: 'lighter'
   },
-  margin: 18,
-  formatter: (params)=>{
-    return params
-  }
+  margin: 18
 }
 
 // 柱状图样式

@@ -1,17 +1,33 @@
 <template>
-  <div data-comp="home-component" class="wrap" ref="wrap">home组件</div>
+  <div class="wrap">
+    <section class="section section-t">
+      <div class="section-item">
+        <div class="cell" ref="bar1"></div>
+        <div class="cell" ref="bar2"></div>
+      </div>
+      <div class="section-item" ref="map">中间</div>
+      <div class="section-item">
+        <div class="cell" ref="line1">上右上</div>
+        <div class="cell" ref="line2">上右下</div>
+      </div>
+    </section>
+    <section class="section section-b">
+      <div class="section-item">下左</div>
+      <div class="section-item">下右</div>
+    </section>
+  </div>
 </template>
 <script type="text/javascript">
-  // **** 组件名称 大驼峰 *****
-  // ** 本地公用变量 公用函数 **
-  import echarts from 'echarts'
-  require('echarts/map/js/china.js')
+  /******* 第三方 组件库 *****/
+  /**** 本地公用变量 公用函数 **/
   import { $ } from 'assets/js/extend'
+  import { barStyle, lineStyle } from 'visual/style'
+  import { Bar } from 'visual/bar'
+  require('echarts/map/js/china.js')
   import { handleResData, chinaMapFlow }  from 'visual/china-map'
   import { echartsMixin } from 'assets/js/mixin'
-  // ***** 第三方 组件库 *****
-  // ***** 本地 公用组件 *****
-  // ** 当前组件的 子组件等 ***
+  /******* 本地 公用组件 *****/
+  /**** 当前组件的 子组件等 ***/
 
   // require('visual/json/china.json')
 
@@ -31,13 +47,42 @@
     },
     mounted() {
       this.initChart()
-      this.renderChart()
+      this.renderMapChart()
+      this.renderBarChart()
+      this.renderLineChart()
     },
     methods: {
       initChart() {
-        this.chart = new chinaMapFlow(this.$refs.wrap)
+        // 地图
+        this.mapChart = new chinaMapFlow(this.$refs.map)
+
+        // 柱状图
+        this.barChart1 = new Bar(this.$refs.bar1, {
+          grid: {
+            left: '50',
+            top: '50'
+          }
+        })
+        this.barChart2 = new Bar(this.$refs.bar2, {
+          grid: {
+            left: '50',
+            top: '50'
+          }
+        })
+        this.lineChart1 = new Bar(this.$refs.line1, {
+          grid: {
+            left: '50',
+            top: '50'
+          }
+        })
+        this.lineChart2 = new Bar(this.$refs.line2, {
+          grid: {
+            left: '50',
+            top: '50'
+          }
+        })
       },
-      renderChart() {
+      renderMapChart() {
 
         var BJData = [
           [{
@@ -208,13 +253,87 @@
           },
           series: handleResData(resData)
         }
-        this.chart.setData(option)
+        this.mapChart.setData(option)
+      },
+      renderBarChart() {
+        let barData = [{
+          name: 'a',
+          type: 'bar',
+          data: [5, 20, 26]
+        }, {
+          name: 'b',
+          type: 'bar',
+          data: [5, 10, 6]
+        }, {
+          name: 'c',
+          type: 'bar',
+          data: [5, 2, 36]
+        }]
+
+        // 数据与样式相合并
+        barData.forEach((item, index) => {
+          $.extend(true, item, barStyle[index])
+        })
+
+        // 生成新的option
+        let barOption = {
+          yAxis: {
+            name: 'hehehe'
+          },
+          legend: {
+            data: barData.map(item => item.name)
+          },
+          series: barData
+        }
+        this.barChart1.setData(barOption)
+        this.barChart2.setData(barOption)
+      },
+      renderLineChart() {
+        let lineData = [{
+          name: 'a',
+          type: 'line',
+          data: [5, 20, 26]
+        }, {
+          name: 'b',
+          type: 'line',
+          data: [5, 10, 6]
+        }, {
+          name: 'c',
+          type: 'line',
+          data: [5, 2, 36]
+        }]
+
+        // 数据与样式相合并
+        lineData.forEach((item, index) => {
+          $.extend(true, item, lineStyle[index])
+        })
+
+        // 生成新的option
+        let lineOption = {
+          yAxis: {
+            name: 'hehehe'
+          },
+          legend: {
+            data: lineData.map(item => item.name)
+          },
+          series: lineData
+        }
+        this.lineChart1.setData(lineOption)
+        this.lineChart2.setData(lineOption)
       },
       _resizeHanlder() {
-        this.chart.resize()
+        this.mapChart.resize()
+        this.barChart1.resize()
+        this.barChart2.resize()
+        this.lineChart1.resize()
+        this.lineChart2.resize()
       },
       _destroyHandler() {
-        this.chart.dispose()
+        this.mapChart.dispose()
+        this.barChart1.dispose()
+        this.barChart2.dispose()
+        this.lineChart1.dispose()
+        this.lineChart2.dispose()
       }
     }
   }
@@ -224,9 +343,58 @@
   @import "~assets/css/mixin";
 
   .wrap {
-    @include flex(space-between);
+    @include flex(flex-start, center, column);
     width: 100%;
     height: 100%;
+    .section {
+      width: 100%;
+      &.section-t {
+        flex: 6 6 6px;
+      }
+      &.section-b {
+        flex: 4 4 4px;
+      }
+    }
+  }
+
+  // 顶部布局
+  .section-t {
+    @include flex(space-between);
+    .section-item {
+      @include flex(space-between, center, column);
+      flex: 1 1 1px;
+      margin-right: 20px;
+      height: 100%;
+      &:last-child {
+        margin-right: 0;
+      }
+      .cell {
+        @include flex(center, center);
+        flex: 1 1 1px;
+        width: 100%;
+        margin-bottom: 5px;
+        background: rgba(0, 0, 0, .3) !important;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // 底部布局
+  .section-b {
+    @include flex(space-between);
+    margin-top: 10px;
+    .section-item {
+      @include flex(center, center);
+      margin-right: 20px;
+      flex: 1 1 1px;
+      height: 100%;
+      background: rgba(0, 0, 255, .3);
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
 </style>
