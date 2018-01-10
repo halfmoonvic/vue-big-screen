@@ -101,6 +101,7 @@ export function handleResData(resData) {
       name: '辅助颜色',
       type: 'map',
       zoom: 1.25,
+      roam: false,
       mapType: 'china',
       markPoint: {
         symbol: 'circle'
@@ -113,9 +114,8 @@ export function handleResData(resData) {
           areaColor: '#3952ca'
         }
       },
-      roam: true
-    });
-  });
+    })
+  })
   return series
 }
 
