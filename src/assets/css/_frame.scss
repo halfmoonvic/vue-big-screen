@@ -2,24 +2,118 @@
 @import './mixin';
 @import "./variable";
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
 
-#app {
+// home页面的 整体布局
+.home {
   @include flex(flex-start, center, column);
   height: 100%;
-  > div {
+  >div {
     width: 100%;
     &.header {
       flex: 0 0 $site-header-height;
       line-height: $site-header-height;
       overflow: hidden;
+
+      font-size: 30px;
+      text-align: center;
+      background: #07335F;
+      color: #fff;
+      a {
+        color: #fff;
+      }
     }
     &.wrap {
       flex: 1;
       overflow: hidden;
+    }
+    &.sidebar {
+      display: none;
+    }
+  }
+}
+
+// 港口页整体布局
+.port {
+  position: relative;
+  height: 100%;
+  background-color: #042045;
+  color: #fff;
+  .header {
+    position: absolute;
+    z-index: 99;
+    width: 80%;
+    height: $site-header-height;
+    line-height: $site-header-height;
+
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50px;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background: rgba(7, 51, 95, .7);
+      transform: skewX(45deg);
+    }
+    a {
+      color: #fff;
+    }
+  }
+  .sidebar {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    z-index: 99;
+    transform: translate3d(0, -50%, 0);
+    width: 140px;
+    text-align: center;
+    .sidebar-list {
+      @include flex(flex-start, center, column);
+      width: 100%;
+    }
+    .sidebar-item {
+      display: inline-block;
+      margin-bottom: 2px;
+      width: 100%;
+      height: 115px;
+      line-height: 115px;
+      background: rgba(4, 50, 94, .7);
+      transition: all .2s ease-in;
+      font-size: 20px;
+      cursor: pointer;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &:hover {
+        background-color: #042045;
+      }
+    }
+  }
+  .cont {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    .main-cont {
+      height: 100%;
+      background: url('./../../../static/bg_port.jpg');
+      background-size: auto 100%;
+    }
+    .suspend {
+      @include flex(flex-start, center, column);
+      position: absolute;
+      right: 30px;
+      top: 60px;
+      z-index: 99;
+      height: calc(100% - 100px);
     }
   }
 }

@@ -1,7 +1,11 @@
 <template>
-  <div class="header">
-    <router-link to="/home">首页</router-link>
-    <router-link to="/port">港口</router-link>
+  <div class="cont">
+    <div class="main-cont"></div>
+    <div class="suspend">
+      <box>111</box>
+      <box>222</box>
+      <box>333</box>
+    </div>
   </div>
 </template>
 
@@ -9,10 +13,11 @@
   /******* 第三方 组件库 *****/
   /**** 本地公用变量 公用函数 **/
   /******* 本地 公用组件 *****/
+  import Box from 'components/box/box'
   /**** 当前组件的 子组件等 ***/
 
   export default {
-    name: 'header',
+    name: 'port',
     props: {
       title: {
         type: String,
@@ -24,11 +29,20 @@
 
       }
     },
-    components: {}
+    components: {
+      Box
+    }
   }
 </script>
 
 <style lang="scss" scoped>
   @import "~assets/css/variable";
   @import "~assets/css/mixin";
+
+  .port {
+
+  }
+
+
+
 </style>
